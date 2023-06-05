@@ -13,7 +13,8 @@ function createPromise(position, delay) {
     setTimeout(() => {
       if (shouldResolve) {
         resolve({ position, delay });
-      } else {
+      }
+      else {
         reject({ position, delay });
       }
     }, delay);
@@ -37,5 +38,8 @@ FormEl.addEventListener('submit', event => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
     del += parseInt(inputStepDelayEl.value);
+    setTimeout(() => {
+      isActive = false;
+    }, parseInt(inputFirstDelayEl.value) + parseInt(inputStepDelayEl.value) * ((parseInt(inputAmountEl.value)) - 1));
   }
 });

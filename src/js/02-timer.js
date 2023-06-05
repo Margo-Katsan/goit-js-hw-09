@@ -29,6 +29,13 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
+function updatingTimer(startTime) {
+  const { days, hours, minutes, seconds } = convertMs(startTime);
+  daysSpanEl.textContent = addLeadingZero(days);
+  hoursSpanEl.textContent = addLeadingZero(hours);
+  minutesSpanEl.textContent = addLeadingZero(minutes);
+  secondsSpanEl.textContent = addLeadingZero(seconds);
+}
 
 const timer = {
   isActive: false,
@@ -42,13 +49,7 @@ const timer = {
 
     this.intervalId = setInterval(() => {
       const startTime = (Date.now() - selectedDates[0]) * (-1);
-      const { days, hours, minutes, seconds } = convertMs(startTime);
-
-      daysSpanEl.textContent = addLeadingZero(days);
-      hoursSpanEl.textContent = addLeadingZero(hours);
-      minutesSpanEl.textContent = addLeadingZero(minutes);
-      secondsSpanEl.textContent = addLeadingZero(seconds);
-
+      updatingTimer(startTime);
       if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
         clearInterval(this.intervalId);
         startBtnEl.setAttribute("disabled", null);          

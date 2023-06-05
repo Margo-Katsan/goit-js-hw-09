@@ -13,13 +13,18 @@ const colorSwitcher = {
     if (this.isActive) {
       return;
     }
+    startBtnEl.setAttribute("disabled", null);
+    stopBtnEl.removeAttribute('disabled');
     this.intervalId = setInterval(() => {
       body.style.backgroundColor = getRandomHexColor();
     }, 1000);
     this.isActive = true;
+    
   },
   onStopChangeBodyBg() {
     clearInterval(this.intervalId);
+    stopBtnEl.setAttribute("disabled", null);
+    startBtnEl.removeAttribute('disabled');
     this.isActive = false;
   }
 }
